@@ -48,5 +48,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
+//search un char ds chaine & renvoie 1 ptr lrsq 1ere occurence du char trouve
+char	*ft_strchr(const char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != (char) c)
+	{
+		if (!*str++)
+		{
+			return (NULL);
+		}
+	}
+	return ((char *)str);
+}
+
 
 

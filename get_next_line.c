@@ -15,6 +15,38 @@ char	*readline(char *str, int fd)
 	return (str);
 }
 
+char	*read_file(int fd, char *res)
+{
+	char	*buffer;
+	int		bread;
+
+	// malloc if res dont exist
+	if (!res)
+		res = ft_calloc(1, 1);
+	// malloc buffer
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));;
+	bread = 1;
+	while (bread > 0)
+	{
+		// while not eof read
+		bread = read(fd, buffer, BUFFER_SIZE);
+		if (bread == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		// 0 to end for leak
+		buffer[bread] = 0;
+		// join and free
+		res = ft_free(res, buffer);
+		// quit if \n find
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
+	free(buffer);
+	return (res);
+}
+
 //expl2
 char	*ft_line(char *buffer)
 {
