@@ -44,7 +44,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		res[i++] = s2[j++];
 	}
 	res[i] = '\0';
-    free (len1);
+    // free (len1);
 	return (res);
 }
 
@@ -64,5 +64,52 @@ char	*ft_strchr(const char *str, int c)
 	return ((char *)str);
 }
 
+//signifie: contagous allocation
+//alloue la mémoire nécessaire pour un tableau 
+//de nmemb éléments de size octets, et renvoie 
+//un pointeur vers la mémoire allouée
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t	*new;
+	size_t	sb;
+
+	sb = nmemb * size;
+	new = malloc (sb);
+	if (new)
+	{
+		ft_memset(new, 0, sb);
+		return (new);
+		free(new);
+	}
+	return (NULL);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	x;
+	unsigned char	*p;
+
+	x = (unsigned char) c;
+	p = (unsigned char *) s;
+	while (n > 0)
+	{
+		*p = x;
+		p++;
+		n--;
+	}
+	return (s);
+}
+
+size_t	ft_strlen(const char	*str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
 
